@@ -63,11 +63,3 @@ The `GPTBatcher` class can be customized with several parameters to adjust its p
 - **miss_index** (list): Tracks indices of requests that failed to process correctly.
 
 For more detailed documentation on the parameters and methods, refer to the class docstring.
-
-## License
-
-Specify your licensing information here.
-
-```
-
-This README provides clear instructions on how to install and use the `GPTBatcher`, along with detailed explanations of its configuration parameters. Adjust the "License" section as necessary based on your project's licensing terms.
