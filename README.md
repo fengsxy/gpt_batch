@@ -10,7 +10,7 @@ A simple tool to batch process messages using OpenAI's GPT models. `GPTBatcher` 
 To get started with `GPTBatcher`, clone this repository to your local machine. Navigate to the repository directory and install the required dependencies (if any) by running:
 
 ```bash
-pip install -r requirements.txt
+pip install gpt_batch
 ```
 
 ## Quick Start
