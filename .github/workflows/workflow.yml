@@ -1,8 +1,8 @@
 name: Publish Python 🐍 distribution 📦 to PyPI
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -15,7 +15,13 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+    
+    - name: List files in the repository
+      run: ls -lha
 
+
+
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
