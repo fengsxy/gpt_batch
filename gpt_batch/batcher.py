@@ -70,7 +70,7 @@ class GPTBatcher:
                 new_list.extend(future.result() for future in done if future.done())
                 if len(not_done) == 0:
                     break
-                future_to_message = {executor.submit(self.get_attitude, future_to_message[future]): future_to_message[future] for future, msg in not_done}
+                future_to_message = {executor.submit(self.get_attitude, future_to_message[future]): future_to_message[future] for future in not_done}
         executor.shutdown(wait=False)
         return new_list
 
