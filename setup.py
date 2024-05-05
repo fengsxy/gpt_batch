@@ -2,11 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gpt_batch',
-<<<<<<< HEAD
     version='0.1.5',
-=======
-    version='0.1.3',
->>>>>>> 15a870c57eb93e1942068418d5d41079d054e8b7
     packages=find_packages(),
     install_requires=[
         'openai', 'tqdm'

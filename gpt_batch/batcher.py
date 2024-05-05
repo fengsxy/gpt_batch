@@ -61,7 +61,6 @@ class GPTBatcher:
     
         executor = ThreadPoolExecutor(max_workers=num_workers)
         message_chunks = list(self.chunk_list(message_list, num_workers))
-<<<<<<< HEAD
         try:
             for chunk in tqdm(message_chunks, desc="Processing messages"):
                 future_to_message = {executor.submit(self.get_attitude, message): message for message in chunk}
@@ -78,20 +77,6 @@ class GPTBatcher:
         finally:
             executor.shutdown(wait=False)
             return new_list
-=======
-        for chunk in tqdm(message_chunks, desc="Processing messages"):
-            future_to_message =  {executor.submit(self.get_attitude, message): message for message in chunk}
-            for _ in range(retry_attempts):
-                done, not_done = wait(future_to_message.keys(), timeout=timeout_duration)
-                for future in not_done:
-                    future.cancel()
-                new_list.extend(future.result() for future in done if future.done())
-                if len(not_done) == 0:
-                    break
-                future_to_message = {executor.submit(self.get_attitude, future_to_message[future]): future_to_message[future] for future in not_done}
-        executor.shutdown(wait=False)
-        return new_list
->>>>>>> 15a870c57eb93e1942068418d5d41079d054e8b7
 
     def complete_attitude_list(self,attitude_list, max_length):
         completed_list = []
