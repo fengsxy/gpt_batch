@@ -57,22 +57,26 @@ class GPTBatcher:
         new_list = []
         num_workers = self.num_workers
         timeout_duration = self.timeout_duration
-        retry_attempts=2
-
+        retry_attempts = 2
+    
         executor = ThreadPoolExecutor(max_workers=num_workers)
         message_chunks = list(self.chunk_list(message_list, num_workers))
-        for chunk in tqdm(message_chunks, desc="Processing messages"):
-            future_to_message =  {executor.submit(self.get_attitude, message): message for message in chunk}
-            for _ in range(retry_attempts):
-                done, not_done = wait(future_to_message.keys(), timeout=timeout_duration)
-                for future in not_done:
-                    future.cancel()
-                new_list.extend(future.result() for future in done if future.done())
-                if len(not_done) == 0:
-                    break
-                future_to_message = {executor.submit(self.get_attitude, future_to_message[future]): future_to_message[future] for future, msg in not_done}
-        executor.shutdown(wait=False)
-        return new_list
+        try:
+            for chunk in tqdm(message_chunks, desc="Processing messages"):
+                future_to_message = {executor.submit(self.get_attitude, message): message for message in chunk}
+                for _ in range(retry_attempts):
+                    done, not_done = wait(future_to_message.keys(), timeout=timeout_duration)
+                    for future in not_done:
+                        future.cancel()
+                    new_list.extend(future.result() for future in done if future.done())
+                    if len(not_done) == 0:
+                        break
+                    future_to_message = {executor.submit(self.get_attitude, future_to_message[future]): future for future in not_done}
+        except Exception as e:
+            print(f"Error occurred: {e}")
+        finally:
+            executor.shutdown(wait=False)
+            return new_list
 
     def complete_attitude_list(self,attitude_list, max_length):
         completed_list = []
