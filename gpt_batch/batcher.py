@@ -42,16 +42,20 @@ class GPTBatcher:
 
     def get_attitude(self, ask_text):
         index, ask_text = ask_text
-
-        completion = self.client.chat.completions.create(
-            model=self.model_name,
-            messages=[
-                {"role": "system", "content": self.system_prompt},
-                {"role": "user", "content": ask_text}
-            ],
-            temperature=self.temperature,
-        )
-        return (index, completion.choices[0].message.content)
+        try:
+            completion = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[
+                    {"role": "system", "content": self.system_prompt},
+                    {"role": "user", "content": ask_text}
+                ],
+                temperature=self.temperature,
+            )
+            return (index, completion.choices[0].message.content)
+        except Exception as e:
+            print(f"Error occurred: {e}")
+            self.miss_index.append(index)
+            return (index, None)
 
     def process_attitude(self, message_list):
         new_list = []
