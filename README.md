@@ -49,6 +49,22 @@ print(result)
 # Expected output: ["embedding_1", "embedding_2", "embedding_3", "embedding_4"]
 ```
 
+### Handling Message Lists with different API
+
+This example demonstrates how to send a list of questions and receive answers with different api:
+
+```python
+from gpt_batch.batcher import GPTBatcher
+
+# Initialize the batcher
+batcher = GPTBatcher(api_key='sk-', model_name='deepseek-chat',api_base_url="https://api.deepseek.com/v1")
+
+
+# Send a list of messages and receive answers
+result = batcher.handle_message_list(['question_1', 'question_2', 'question_3', 'question_4'])
+
+# Expected output: ["answer_1", "answer_2", "answer_3", "answer_4"]
+```
 ## Configuration
 
 The `GPTBatcher` class can be customized with several parameters to adjust its performance and behavior:
