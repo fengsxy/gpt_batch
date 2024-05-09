@@ -1,4 +1,3 @@
-Certainly! Here's a clean and comprehensive README for your `GPTBatcher` tool, formatted in Markdown:
 
 ```markdown
 # GPT Batcher
