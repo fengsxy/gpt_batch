@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='gpt_batch',
-    version='0.1.6',
+    version='0.1.7',
     packages=find_packages(),
     install_requires=[
-        'openai', 'tqdm'
+        'openai', 'tqdm','anthropic'
     ],
     author='Ted Yu',
     author_email='liddlerain@gmail.com',
