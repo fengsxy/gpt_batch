@@ -20,12 +20,7 @@ class GPTBatcher:
         retry_attempts (int): Number of retries if a request fails. Default is 2.
         miss_index (list): Tracks the indices of requests that failed to process correctly.
     """
-
-<<<<<<< HEAD
     def __init__(self, api_key, model_name="gpt-3.5-turbo-0125", system_prompt="",temperature=1,num_workers=64,timeout_duration=60,retry_attempts=2,api_base_url=None,**kwargs):
-=======
-    def __init__(self, api_key, model_name="gpt-3.5-turbo-0125", system_prompt="",temperature=1,num_workers=64,timeout_duration=60,retry_attempts=2,api_base_url=None):
->>>>>>> f85b2fde38f50fd16ddf1c8846a80a0f85cd7d42
         
         self.is_claude = bool(re.search(r'claude', model_name, re.IGNORECASE))
         
@@ -45,10 +40,7 @@ class GPTBatcher:
         self.timeout_duration = timeout_duration
         self.retry_attempts = retry_attempts
         self.miss_index = []
-<<<<<<< HEAD
         self.extra_params = kwargs 
-=======
->>>>>>> f85b2fde38f50fd16ddf1c8846a80a0f85cd7d42
 
     def get_attitude(self, ask_text):
         index, ask_text = ask_text
@@ -63,10 +55,7 @@ class GPTBatcher:
                     ],
                     system=self.system_prompt if self.system_prompt else None,
                     temperature=self.temperature,
-<<<<<<< HEAD
                     **self.extra_params
-=======
->>>>>>> f85b2fde38f50fd16ddf1c8846a80a0f85cd7d42
                 )
                 return (index, message.content[0].text)
             else:

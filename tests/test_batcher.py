@@ -18,10 +18,6 @@ def test_handle_message_list():
     assert len(results) == 2, "There should be two results, one for each message"
     assert all(len(result) >= 2 for result in results), "Each result should be at least two elements"
 
-<<<<<<< HEAD
-
-
-
 
 def test_json_format():
     import json
@@ -43,8 +39,6 @@ def test_json_format():
 
 
 
-=======
->>>>>>> f85b2fde38f50fd16ddf1c8846a80a0f85cd7d42
 def test_handle_embedding_list():
     # Initialize the GPTBatcher with hypothetical valid credentials
     #api_key = #get from system environment
